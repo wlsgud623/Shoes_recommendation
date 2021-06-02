@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/Cambutton"
+        android:layout_width="220dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/black_gradation2"
+        android:drawableStart="@drawable/bt_camera"
+        android:layout_gravity="center"
+        android:paddingLeft="18dp"
+        android:text="카메라"
+        android:textColor="@color/RealRealWhite"
+        android:textSize="12pt"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Galbutton"
+        android:layout_width="220dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/black_gradation2"
+        android:drawableStart="@drawable/bt_gallery"
+        android:paddingLeft="18dp"
+        android:text="갤러리"
+        android:textColor="@color/RealRealWhite"
+        android:textSize="12pt"
+        android:textStyle="bold" />
+
+</FrameLayout>

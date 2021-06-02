@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_button"
+        android:icon="@drawable/bg_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/list_button"
+        android:icon="@drawable/bg_list"
+        android:title="List" />
+
+    <item
+        android:id="@+id/camera_button"
+        android:icon="@drawable/bg_camera"
+        android:title="Camera" />
+
+    <item
+        android:id="@+id/searching_button"
+        android:icon="@drawable/bg_search"
+        android:title="Search" />
+
+</menu>

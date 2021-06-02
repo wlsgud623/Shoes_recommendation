@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:textColor="@color/JinGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="검색 결과" />
+
+        <include
+            android:id="@+id/picture_result"
+            layout="@layout/picture_result"/>
+
+        <include
+            android:id="@+id/name_result"
+            layout="@layout/name_result"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/JinGrey"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:text="추천 유사 제품"/>
+
+            <include
+                android:id="@+id/similar_shoes"
+                layout="@layout/multiple_shoes_icon"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

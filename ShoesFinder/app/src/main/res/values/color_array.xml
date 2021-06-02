@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="color">
+        <item>색상</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Grey</item>
+        <item>Navy</item>
+        <item>Red</item>
+        <item>Beige</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Sky Blue</item>
+    </string-array>
+</resources>

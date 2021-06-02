@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <include
+                android:id="@+id/CurrentUser"
+                layout="@layout/main_user" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/RealRealWhite"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="15dp"
+                android:textSize="30dp"
+                android:background="@drawable/black_gradation3"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="  다른 사용자들의 선택"/>
+
+            <include
+                android:id="@+id/userlog"
+                layout="@layout/multiple_shoes_icon"/>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/RealRealWhite"
+                android:fontFamily="@font/nanumbarungothicbold"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="15dp"
+                android:textSize="30dp"
+                android:background="@drawable/black_gradation3"
+                android:layout_marginBottom="30dp"
+                android:text="  내가 본 상품"/>
+            <include
+                android:id="@+id/mylog"
+                layout="@layout/multiple_shoes_icon"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

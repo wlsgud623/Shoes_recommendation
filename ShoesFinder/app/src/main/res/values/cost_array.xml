@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cost">
+        <item>가격대</item>
+        <item>1만원</item>
+        <item>2만원</item>
+        <item>3만원</item>
+        <item>4만원</item>
+        <item>5만원</item>
+        <item>6만원</item>
+        <item>7만원</item>
+        <item>8만원</item>
+        <item>9만원</item>
+        <item>10만원</item>
+        <item>11만원</item>
+    </string-array>
+</resources>

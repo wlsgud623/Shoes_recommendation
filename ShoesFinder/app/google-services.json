@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "548574407922",
+    "firebase_url": "https://shoes-finder-project-default-rtdb.firebaseio.com",
+    "project_id": "shoes-finder-project",
+    "storage_bucket": "shoes-finder-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548574407922:android:83bad66bb7bd62b328f46b",
+        "android_client_info": {
+          "package_name": "com.example.shoesfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548574407922-e0abqbkl8fb1el6cund0h6a83j4t7oe9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shoesfinder",
+            "certificate_hash": "6c53b72c9471b156f53cbc8afa27ffbf5c71461a"
+          }
+        },
+        {
+          "client_id": "548574407922-38c6kta152rb5iod3tv0pjhsj6fskpvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYPUYMJWWqTEJjYtKARlLWN4-W9QF82Bs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548574407922-38c6kta152rb5iod3tv0pjhsj6fskpvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
