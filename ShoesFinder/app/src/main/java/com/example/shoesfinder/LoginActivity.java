@@ -18,26 +18,42 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity  {
 
         Button join;
         Button login;
-        SignInButton glogin;
+        Button nonmember;
         private EditText email_login;
         private EditText pwd_login;
         private FirebaseAuth firebaseAuth;
+        FirebaseFirestore db;
+        FirebaseUser currentUser;
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
+            db = FirebaseFirestore.getInstance();
 
             login = (Button) findViewById(R.id.log_in_button);
             join = (Button) findViewById(R.id.sign_button);
+            nonmember = (Button) findViewById(R.id.unlogin_button);
 
             email_login = (EditText) findViewById(R.id.username);
             pwd_login = (EditText) findViewById(R.id.password);
@@ -59,6 +75,29 @@ public class LoginActivity extends AppCompatActivity  {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()){
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                                                String uid = currentUser.getEmail();
+                                                intent.putExtra("id", uid);
+                                                DocumentReference doc = db.collection("user").document(uid);
+                                                doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        DocumentSnapshot documentSnapshot = task.getResult();
+                                                        if (!documentSnapshot.exists()){
+                                                            List<String> list = new ArrayList<>();
+                                                            Map<String, Object> log = new HashMap<>();
+                                                            log.put("visited", list);
+
+                                                            db.collection("user").document(uid).set(log).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+
+                                                                }
+                                                            });
+                                                            db.collection("user").document(uid).update("visited", FieldValue.arrayUnion());
+                                                        }
+                                                    }
+                                                });
                                                 startActivity(intent);
                                             }
                                             else{
@@ -74,6 +113,14 @@ public class LoginActivity extends AppCompatActivity  {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            nonmember.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             });

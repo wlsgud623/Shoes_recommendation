@@ -48,7 +48,7 @@ public class PhotoActivity extends AppCompatActivity {
     private String getStringFromBitmap(Bitmap bitmapPicture) {
         String encodedImage;
         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-        bitmapPicture.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
+        bitmapPicture.compress(Bitmap.CompressFormat.PNG, 50, byteArrayBitmapStream);
         byte[] b = byteArrayBitmapStream.toByteArray();
         encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         return encodedImage;
@@ -70,7 +70,8 @@ public class PhotoActivity extends AppCompatActivity {
         bb = (Button) findViewById(R.id.Backbutton);
         sb = (Button) findViewById(R.id.SearchButton);
         queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.35.59:5000/check";
+        //String url = "http:10.0.0.2:5000/check"; // for android emulator
+        String url = "https://shoesfinder-316010.du.r.appspot.com/check";
 
 
         bb.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,6 @@
 package com.example.shoesfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,7 +56,6 @@ public class HomeFragment extends Fragment {
     private  TextView sfisrt_price, ssecond_price, sthird_price;
     private  ImageView sfisrt_image, ssecond_image, sthird_image;
     private View profileView;
-    FirebaseUser currentUser;
 
     FirebaseFirestore db;
 
@@ -97,22 +97,21 @@ public class HomeFragment extends Fragment {
         profileView = (View) userView.findViewById(R.id.main_back);
 
 
-        try {
-            currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = currentUser.getEmail();
+        if (getActivity().getIntent().getStringExtra("id") == null){
+            idView.setText("noname");
+            MainActivity.id = "noname";
+        }
+        else {
+            String uid = getActivity().getIntent().getStringExtra("id");
             MainActivity.id = uid;
             idView.setText(uid);
         }
-        catch (NullPointerException e){
-            idView.setText("Noname");
-            MainActivity.id = "Noname";
-        }
-        Log.d("id", MainActivity.id);
         userlog = (View) v.findViewById(R.id.userlog);
         mylog = (View) v.findViewById(R.id.mylog) ;
 
-        String[] user_vistied = new String[3];
-        String[] my_vistied = new String[3];
+
+        String[] user_vistied = {null, null, null};
+        String[] my_vistied = {null, null, null};
 
         sfs = (View) userlog.findViewById(R.id.first_Shoes);
         sss = (View) userlog.findViewById(R.id.second_Shoes);
@@ -157,6 +156,7 @@ public class HomeFragment extends Fragment {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         List<String> visit = (List<String>) documentSnapshot.get("visited");
                         if (visit!= null && visit.size() == 1) {
+                            user_vistied[0] = visit.get(0);
                             db.collection("shose").document(visit.get(0)).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -167,6 +167,8 @@ public class HomeFragment extends Fragment {
                                 }
                             });
                         } else if (visit!= null && visit.size() == 2) {
+                            user_vistied[1] = visit.get(0);
+                            user_vistied[0] = visit.get(1);
                             db.collection("shose").document(visit.get(1)).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -186,6 +188,9 @@ public class HomeFragment extends Fragment {
                                 }
                             });
                         } else if (visit!= null && visit.size() >= 3) {
+                            user_vistied[2] = visit.get(visit.size()-3);
+                            user_vistied[1] = visit.get(visit.size()-2);
+                            user_vistied[0] = visit.get(visit.size()-1);
                             db.collection("shose").document(visit.get(visit.size()-1)).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -235,6 +240,7 @@ public class HomeFragment extends Fragment {
                 DocumentSnapshot documentSnapshot = task.getResult();
                 List<String> visit = (List<String>) documentSnapshot.get("visited");
                 if (visit!= null && visit.size() == 1) {
+                    my_vistied[0] = visit.get(0);
                     db.collection("shose").document(visit.get(0)).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -245,6 +251,8 @@ public class HomeFragment extends Fragment {
                         }
                     });
                 } else if (visit!= null && visit.size() == 2) {
+                    my_vistied[0] = visit.get(1);
+                    my_vistied[1] = visit.get(0);
                     db.collection("shose").document(visit.get(1)).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -264,6 +272,9 @@ public class HomeFragment extends Fragment {
                         }
                     });
                 } else if (visit!= null && visit.size() >= 3) {
+                    my_vistied[2] = visit.get(visit.size()-3);
+                    my_vistied[1] = visit.get(visit.size()-2);
+                    my_vistied[0] = visit.get(visit.size()-1);
                     db.collection("shose").document(visit.get(visit.size()-1)).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -293,7 +304,69 @@ public class HomeFragment extends Fragment {
                     });
                 }
             }});
+        fs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user_vistied[0] != null){
+                    Intent intent = new Intent(getActivity(), EachActivity.class);
+                    intent.putExtra("document", user_vistied[0]);
+                    startActivity(intent);
+                }
+            }
+        });
 
+        ss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user_vistied[1] != null){
+                    Intent intent = new Intent(getActivity(), EachActivity.class);
+                    intent.putExtra("document", user_vistied[1]);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        ts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user_vistied[2] != null){
+                    Intent intent = new Intent(getActivity(), EachActivity.class);
+                    intent.putExtra("document", user_vistied[2]);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        sfs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(my_vistied[0] != null){
+                    Intent intent = new Intent(getActivity(), EachActivity.class);
+                    intent.putExtra("document", my_vistied[0]);
+                    startActivity(intent);
+                }
+            }
+        });
+        sss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(my_vistied[1] != null){
+                    Intent intent = new Intent(getActivity(), EachActivity.class);
+                    intent.putExtra("document", my_vistied[1]);
+                    startActivity(intent);
+                }
+            }
+        });
+        sts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(my_vistied[2] != null){
+                    Intent intent = new Intent(getActivity(), EachActivity.class);
+                    intent.putExtra("document", my_vistied[2]);
+                    startActivity(intent);
+                }
+            }
+        });
 
         return v;
 

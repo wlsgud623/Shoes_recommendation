@@ -52,6 +52,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            Toast.makeText(SignupActivity.this, "회원 가입 완료", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();

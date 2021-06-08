@@ -101,7 +101,7 @@ public class SearchFragment extends Fragment {
                        searchAdapter.notifyDataSetChanged();
                        if(task.isSuccessful()){
                            for(DocumentSnapshot documentSnapshot : task.getResult()){
-                               if(documentSnapshot.get("name").toString().contains(s) || documentSnapshot.get("color").toString().contains(s) || documentSnapshot.get("brand").toString().contains(s)){
+                               if(documentSnapshot.get("name").toString().contains(s) || documentSnapshot.get("color").toString().contains(s) || documentSnapshot.get("brand").toString().contains(s) || documentSnapshot.get("price").toString() == s){
                                    searchAdapter.addItem(new shoes(documentSnapshot.getId(), documentSnapshot.get("name").toString(), documentSnapshot.get("brand").toString(), documentSnapshot.get("image").toString(), Integer.parseInt(documentSnapshot.get("price").toString())));
                                    searchAdapter.notifyDataSetChanged();}
                                }
